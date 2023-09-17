@@ -23,6 +23,14 @@ describe('UserEntity', () => {
     expect(sut.password).toEqual(props.password)
   })
 
+  it('should be defined (setters)', () => {
+    sut['name'] = 'new name'
+    sut['password'] = 'new password'
+
+    expect(sut.props.name).toEqual('new name')
+    expect(sut.props.password).toEqual('new password')
+  })
+
   it('should be defined', () => {
     expect(sut).toBeDefined()
   })
@@ -34,5 +42,19 @@ describe('UserEntity', () => {
     expect(typeof sut.props.password).toBe('string')
     expect(sut.props.createdAt).toBeInstanceOf(Date)
     expect(sut.props.updatedAt).toBeInstanceOf(Date)
+  })
+
+  it('should update an user', () => {
+    const newName = 'new name'
+    sut.update(newName)
+
+    expect(sut.props.name).toEqual(newName)
+  })
+
+  it('should update an user password', () => {
+    const newPassword = 'new password'
+    sut.updatePassword(newPassword)
+
+    expect(sut.props.password).toEqual(newPassword)
   })
 })
